@@ -8,7 +8,7 @@ const App = () => {
   const [taskName, setTaskName] = useState('');
 
   useEffect(() => {
-    const socket = io('localhost:8000');
+    const socket = io('http://localhost:8000');
     setSocket(socket);
 
     socket.on('addTask', (task) => {
@@ -42,7 +42,7 @@ const App = () => {
   const submitForm = (e) => {
     e.preventDefault();
     const task = { name: taskName, id: shortid() };
-    // addTask(task);
+    addTask(task);
     socket.emit('addTask', task);
     setTaskName('');
   };
